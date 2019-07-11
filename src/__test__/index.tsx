@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EntryRoute from '../components';
+import EntryRoute from 'components';
 
 
 it('renders without crashing', () => {

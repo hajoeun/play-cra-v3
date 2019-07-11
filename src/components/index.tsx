@@ -1,19 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'components/index.css';
-import { GithubAPI } from 'api';
+import { GithubAPI, ResponseItem } from 'api';
 import { Body } from 'components/body';
+import { List } from 'components/list';
 
 const EntryRoute: React.FC = () => {
+
+  const [items, setItems] = useState<Array<ResponseItem>>([]);
 
   useEffect(() => {
 
     GithubAPI()
-      .then(res => { console.log(res) })
+      .then(res => {
+        setItems(res.items);
+      })
 
   }, []);
 
   return (
-    <Body/>
+    <>
+      <Body/>
+      {
+        items.length ? (
+          <List
+            items={items}
+          />
+        ) : '--------'
+      }
+    </>
   );
 }
 
